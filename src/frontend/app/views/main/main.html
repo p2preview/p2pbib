@@ -1,0 +1,23 @@
+<div id="page-wrapper" ng-class="{'open': toggle}" ng-cloak class="blue-background">
+
+  <!-- Sidebar -->
+  <sidebar></sidebar>
+
+  <!-- Header -->
+  <header></header>
+
+  <!-- Content -->
+  <!-- Content -->
+  <div id="content-wrapper" class="blue-background">
+    <div data-ng-if="loading" class="large-margin-top">
+      <div data-ng-include="'views/other/loadingAnimation.html'"></div>
+    </div>
+    <div ui-view data-ng-class="{'ng-cloak': loading}"></div>
+
+  </div>
+
+</div>
+
+<script>
+    $(window).trigger("load");
+</script>

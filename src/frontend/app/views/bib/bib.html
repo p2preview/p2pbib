@@ -1,0 +1,132 @@
+<div class="row-fluid">
+
+    <div class="col-md-12 col-lg-8">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    <div class="profile-header-img white">
+                        <img class="img-circle" src="images/cryptos.png"/>
+                            Blockchain Bibliography
+                    </div>
+                </h1>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Disclaimer and Bib-info - Non-mobile -->
+    <div class="col-md-12 col-lg-8 hidden-xs">
+        <div class="row-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="col-xs-12 ">
+                        This page represents an export of peer-reviewed papers as well as eprints and pre-prints of the
+                        <a target="_blank" href="https://github.com/kernoelpanic/blockchainbib"><i>Blocks & Chains
+                            Bibliography</i></a>, containing publications and various online resources in the field of
+                        cryptocurrencies
+                        and distributed ledger technologies.
+                        Contributions to the project via <a target="_blank"
+                                                            href="https://github.com/kernoelpanic/blockchainbib">GitHub</a>
+                        are welcome.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 col-lg-8">
+        <div class="row-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <div class="col-md-12 small-bot-buffer">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group has-feedback">
+                                <label for="query" class="control-label">Seach</label>
+                                <input id="query" type="text" class="form-control"
+                                       placeholder="Seach for Title, Authors, BibtexID, ..."
+                                       data-ng-model="query" autofocus/>
+                                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Order : Non-Mobile view -->
+                    <div class="col-xs-12 hidden-xs">
+                        <div class="col-xs-2 hidden-xs">
+                            <label>Sort by</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <a data-ng-click="vm.order('title')" data-ng-class="{'bold': vm.predicate === 'title'}">Title</a>
+                            <span class="fa" data-ng-show="vm.predicate === 'title'"
+                                  data-ng-class="{'fa-caret-up' : vm.reverse, 'fa-caret-down': !vm.reverse}"></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <a data-ng-click="vm.order('author')"
+                               data-ng-class="{'bold': vm.predicate === 'author'}"> Author</a>
+                            <span class="fa" data-ng-show="vm.predicate === 'author'"
+                                  data-ng-class="{'fa-caret-up' : vm.reverse, 'fa-caret-down': !vm.reverse}"></span>
+                        </div>
+                        <div class="col-sm-2">
+                            <a data-ng-click="vm.order('year')"
+                               data-ng-class="{'bold': vm.predicate === 'year'}"> Year</a>
+                            <span class="fa" data-ng-show="vm.predicate === 'year'"
+                                  data-ng-class="{'fa-caret-up' : vm.reverse, 'fa-caret-down': !vm.reverse}"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12  hidden-lg  hidden-md  hidden-sm">
+                    <div class="col-xs-12">
+                                    
+                        <!-- Single button -->
+                        <div class="btn-group" uib-dropdown is-open="status.isopen">
+                            <button id="single-button" type="button" class="btn btn-default" uib-dropdown-toggle ng-disabled="disabled">
+                            Sort by <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                                <li role="menuitem" data-ng-repeat="choice in vm.choices"><a data-ng-click="vm.order(choice)" >{{choice}}
+                                        <span class="fa" data-ng-show="vm.predicate === choice"
+                                        data-ng-class="{'fa-caret-up' : vm.reverse, 'fa-caret-down': !vm.reverse}"></span>    
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                
+                <div class="panel-body">
+
+                    <div class="col-md-12">
+                        <div class="panel panel-default small-margin-bottom"
+                             data-ng-repeat="bib in filteredBibs = (vm.bibs |orderBy:vm.predicate:vm.reverse |emptyToEnd:vm.predicate |filter:query)">
+                            <div class="panel-body clearfix small-padding">
+                                <div class="col-lg-12 form-control-static no-margin-bottom">
+                                        <b>{{bib.title}}</b>
+                                </div>
+                                <div class="col-lg-12 no-margin-top">
+                                    {{bib.author}}
+                                    <br/>
+                                    <i class="hidden-xs">{{bib.publish_info}}</i>
+                                    <br/>
+                                    <b>{{bib.year}}</b>
+                                    <span class="btn-group-sm pull-right">
+                                            <a target="_blank" href="{{bib.url}}" class="btn btn-primary btn-sm">PDF</a>
+                                            <a target="_blank" href="bibtex.html#{{bib.ID}}" type="button"
+                                               class="btn btn-default btn-sm">BIB</a>
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-ng-show="query && !filteredBibs.length" class="panel panel-default">
+                        <div class="panel-body">
+                            <p class="red">No entries found for the provided search string!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

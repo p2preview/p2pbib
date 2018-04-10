@@ -1,0 +1,3 @@
+[submodule "p2preview.github.io"]
+	path = p2preview.github.io
+	url = git@github.com:p2preview/p2preview.github.io.git
